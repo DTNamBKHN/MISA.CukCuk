@@ -16,9 +16,10 @@ namespace MISA.CukCuk.Api.Controllers
 {
     [Route("api/v1/[controller]s")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomerController : BaseController
     {
-        // GET: api/<CustomerController>
+        /*
+        // GET: api/v1/<CustomerController>
         [HttpGet]
         public IActionResult Get()
         {
@@ -37,7 +38,7 @@ namespace MISA.CukCuk.Api.Controllers
             }
 
         }
-
+        */
         [HttpGet("Paging")]
         public IActionResult GetPaging(int pageIndex, int pageSize)
         {
@@ -78,7 +79,7 @@ namespace MISA.CukCuk.Api.Controllers
                 return NoContent();
             }
         }
-
+        /*
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
@@ -104,7 +105,7 @@ namespace MISA.CukCuk.Api.Controllers
             {
 
                 CustomerBL customerBL = new CustomerBL();
-                var rowAffects = customerBL.Insert(customer);
+                var rowAffects = customerBL.Insert<Customer>(customer);
                 // 4. Trả về cho Client:
                 if (rowAffects > 0)
                 {
@@ -145,7 +146,7 @@ namespace MISA.CukCuk.Api.Controllers
         public IActionResult Put(Guid id, [FromBody] Customer customer)
         {
             CustomerBL customerBL = new CustomerBL();
-            var res = customerBL.Update(customer, id);
+            var res = customerBL.Update<Customer>(customer, id);
             if (res > 0)
             {
                 return Ok(res);
@@ -158,9 +159,19 @@ namespace MISA.CukCuk.Api.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
-            return Ok();
+            CustomerBL customerBL = new CustomerBL();
+            var res = customerBL.Delete<Customer>(id);
+            if (res > 0)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return NoContent();
+            }
         }
+        */
     }
 }
