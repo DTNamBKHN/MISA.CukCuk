@@ -12,7 +12,7 @@ namespace MISA.CukCuk.Api.Controllers
 {
     [Route("api/v1/[controller]s")]
     [ApiController]
-    public class CustomerGroupController : BaseController
+    public class CustomerGroupController : BaseController<CustomerGroup>
     {
         /*
         // GET: api/v1/<CustomerGroupController>

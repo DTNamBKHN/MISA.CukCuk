@@ -12,11 +12,11 @@ namespace MISA.CukCuk.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class BaseController : ControllerBase
+    public class BaseController<MISAEntity> : ControllerBase
     {
         // GET: api/v1/<Controller>
         [HttpGet]
-        public IActionResult Get<MISAEntity>()
+        public IActionResult Get()
         {
             BaseBL baseBL = new BaseBL();
             var entities = baseBL.GetAll<MISAEntity>();
@@ -35,7 +35,7 @@ namespace MISA.CukCuk.Api.Controllers
 
         // GET api/v1/<Controller>/5
         [HttpGet("{id}")]
-        public IActionResult Get<MISAEntity>(Guid id)
+        public IActionResult Get(Guid id)
         {
             BaseBL baseBL = new BaseBL();
             var entity = baseBL.GetById<MISAEntity>(id);
@@ -52,7 +52,7 @@ namespace MISA.CukCuk.Api.Controllers
 
         // POST api/v1/<Controller>
         [HttpPost]
-        public IActionResult Post<MISAEntity>([FromBody] MISAEntity entity)
+        public IActionResult Post([FromBody] MISAEntity entity)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace MISA.CukCuk.Api.Controllers
 
         // PUT api/v1/<Controller>/5
         [HttpPut("{id}")]
-        public IActionResult Put<MISAEntity>(Guid id, [FromBody] MISAEntity entity)
+        public IActionResult Put(Guid id, [FromBody] MISAEntity entity)
         {
             BaseBL baseBL = new BaseBL();
             var res = baseBL.Update<MISAEntity>(entity, id);
@@ -113,7 +113,7 @@ namespace MISA.CukCuk.Api.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete<MISAEntity>(Guid id)
+        public IActionResult Delete(Guid id)
         {
             BaseBL baseBL = new BaseBL();
             var res = baseBL.Delete<MISAEntity>(id);
